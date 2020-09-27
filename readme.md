@@ -1,6 +1,7 @@
 # Snake Game with Improved Deep Q Reinforcement Learning
 
 ![Spoiler!](GIFs/Snake4.gif)
+*^This is a spoiler^*
 
 ## Overview
 
