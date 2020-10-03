@@ -29,7 +29,9 @@ The main problem to overcome in this project was the phenomena of 'Catastrophic 
 To overcome this I have added the chance (once experience replay memory is full) to play a game with random actions to ensure some random failures exist in replay memory. Further, I added the chance for the agent to play a full game following the optimal policy (no random actions) for the agent to train on some states with greater snake length. Note, this is required as snake length is one of the state attributes.
 
 ## Results
-Here is the average
+The results for testing the snake agent over 377 games are shown below. The average score was 51.3
+
+![Results](GIFs/Results.png)
 
 ## How to run
 To download the repository, open a cmd prompt and execute
