@@ -12,7 +12,7 @@ The DQN accepts a state of input data (length 9) from the game. The first 7 stat
 
 Training uses improvements to basic DQN including epsilon-greedy, experience replay and a secondary target network for calculating loss.
 
-Fig1 here
+![Figure 1](GIFs/SnakeArrows.png)
 
 ## Challenges and Improvements
 
