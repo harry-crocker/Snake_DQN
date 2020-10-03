@@ -31,7 +31,29 @@ Here is the average
 
 ## How to run
 To download the repository, open a cmd prompt and execute
-```BASH
+```
 git clone https://github.com/harry-crocker/Snake_DQN.git
 ```
+
+This will create a folder on your computer that you can access from the command prompt by executing 
+
+```
+cd Snake_DQN
+```
+
+Create a virtual environment and activate it. For infos, click [here](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/).
+
+Download the necessary libraries:
+
+```
+pip install -r requirements.txt
+```
+
+To run the snake with pre-trained DQN
+
+```
+python main.py
+```
+
+To terminiate running press Q on your keyboard
 
