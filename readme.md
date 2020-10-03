@@ -30,6 +30,8 @@ To overcome this I have added the chance (once experience replay memory is full)
 Here is the average
 
 ## How to run
-
-hi
+To download the repository, open a cmd prompt and execute
+```BASH
+git clone https://github.com/harry-crocker/Snake_DQN.git
+```
 
