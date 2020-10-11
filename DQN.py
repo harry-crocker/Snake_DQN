@@ -30,7 +30,7 @@ class DeepQNetwork:
         else:
             weights, self.memory, self.push_count, self.train_loss, self.q_preds = self.load_data()
             self.model.set_weights(weights)
-
+            
         print(f'Push Count:{self.push_count}')
         self.capacity = 300_000
         # e is epsilon, the probability that an action will be random
@@ -91,7 +91,7 @@ class DeepQNetwork:
         self.e = self.e_end + (self.e_start - self.e_end) * \
                     math.exp(-1. * self.push_count * self.e_decay) 
 
-        if (self.e > random.random() and not exploit) or explore:
+        if (self.e > random.random() or explore) and not exploit:
             # Execute a random action to explore the environment
             action = random.randrange(self.num_actions)
             return action
@@ -171,23 +171,16 @@ class DeepQNetwork:
 
 
     def save_data(self):
-        path = 'Saved_Data'
         filename = 'Snake_Memory_Conv' if self.conv else 'Snake_Memory'
         object_to_save = [self.model.get_weights(), self.memory, self.push_count, self.train_loss, self.q_preds]
-        with open(f'{path}/{filename}', 'wb') as file:
+        with open(f'{filename}.pkl', 'wb') as file:
             pickle.dump(object_to_save, file)
 
 
 
     def load_data(self):
-
-        # path = 'Saved_Data'
-        # filename = 'Snake_Memory_Conv' if self.conv else 'Snake_Memory'
-
-        path = '/Users/Harry/Downloads'
-        filename = 'Snake_Memory'
-
-        with open(f'{path}/{filename}', 'rb') as file:
+        filename = 'Snake_Memory.pkl'
+        with open(filename, 'rb') as file:
             saved = pickle.load(file)
         return saved
         

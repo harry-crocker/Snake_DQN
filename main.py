@@ -4,6 +4,7 @@ import pygame
 import random
 import pickle
 import time
+import sys
 '''
 This is the main game loop to run, play and train snake snake
 By default it will load DQN with saved weights and test
@@ -40,9 +41,9 @@ def main(gamemode=1, train=False, reset_weights=False, use_pygame=True, use_conv
     start_time = time.time()
     # Initialise parameters
     run = True
-    frame = 15 # Framerate
+    frame = 10 + gamemode*5 # Framerate
 
-    instant_restart = True if gamemode==1 else False
+    instant_restart = bool(gamemode)
     display = True
 
     # Window dimensions (Changes size of game board)
@@ -75,13 +76,14 @@ def main(gamemode=1, train=False, reset_weights=False, use_pygame=True, use_conv
     count_time = time.time()     
     percent_apple = 0
     percent_lose = 0   
-    exploit = False
+    exploit = not train 
     explore = False
 
     print("Before loop --- %s seconds ---" % (time.time() - start_time))
 
     while run:
         # Outputs data while training 
+        counter += 1
         if counter % 50_000 == 5000 and train:
             rewards = [item[3] for item in DQN.memory]
             percent_apple = round(rewards.count(1) * 100/len(rewards), 1)
@@ -93,7 +95,7 @@ def main(gamemode=1, train=False, reset_weights=False, use_pygame=True, use_conv
             DQN.save_data()
             print('Time between prints: %s' % round(time.time() - count_time, 0))
             count_time = time.time()
-        counter += 1
+        
 
         if use_pygame:
             events = pygame.event.get()
@@ -148,7 +150,7 @@ def main(gamemode=1, train=False, reset_weights=False, use_pygame=True, use_conv
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_r:
                             # Re initiliase game
-                            print(snake.score)
+                            print(f'Score: {snake.score}')
                             snake = Snake(gamemode, win_width, win_height, use_conv)
                             action = 1
             elif gamemode == 1: # DQN
@@ -157,7 +159,7 @@ def main(gamemode=1, train=False, reset_weights=False, use_pygame=True, use_conv
                     print(f'Score: {snake.score}    Average: {sum(scores)//len(scores)}')
                 snake = Snake(gamemode, win_width, win_height, use_conv)
                 action = 1
-                if DQN.push_count > DQN.capacity:
+                if DQN.push_count > DQN.capacity and train:
                     if random.random() < 0.1:
                         exploit = True
                         explore = False
@@ -175,6 +177,7 @@ def main(gamemode=1, train=False, reset_weights=False, use_pygame=True, use_conv
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_t:
                         train = False if train else True
+                        exploit = not train
                         print('Toggle Train')
                     if event.key == pygame.K_d:
                         display = False if display else True
@@ -185,14 +188,19 @@ def main(gamemode=1, train=False, reset_weights=False, use_pygame=True, use_conv
                 if event.type == pygame.KEYDOWN or event.type == pygame.QUIT:
                     if event.key == pygame.K_q or event.type == pygame.QUIT:
                         DQN.save_data()
-                        path = 'Saved_Data'
-                        filename = 'Scores'
+                        filename = 'Scores.pkl'
                         object_to_save = scores
-                        with open(f'{path}/{filename}', 'wb') as file:
+                        with open(f'{filename}', 'wb') as file:
                             pickle.dump(object_to_save, file)
                         run = False
                         quit()
 
 
 if __name__ == "__main__":
-    main(0, False, False, True, False)
+    # Check for inputs
+    if len(sys.argv) > 1:
+        _, gamemode, train, reset_weights = sys.argv
+        main(gamemode, train, reset_weights)
+    else:
+        # Else run with default parameters
+        main()
