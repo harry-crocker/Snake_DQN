@@ -41,7 +41,7 @@ def main(gamemode=1, train=False, reset_weights=False, use_pygame=True, use_conv
     start_time = time.time()
     # Initialise parameters
     run = True
-    frame = 10 + int(gamemode)*5 # Framerate
+    frame = 10 + gamemode*5 # Framerate
 
     instant_restart = bool(gamemode)
     display = True
@@ -200,7 +200,7 @@ if __name__ == "__main__":
     # Check for inputs
     if len(sys.argv) > 1:
         _, gamemode, train, reset_weights = sys.argv
-        main(gamemode, train, reset_weights)
+        main(int(gamemode), bool(int(train)), bool(int(reset_weights)))
     else:
         # Else run with default parameters
         main()
