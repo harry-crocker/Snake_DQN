@@ -76,7 +76,7 @@ Where:
                   
 **Training can be toggled on/off at anytime by pressing 'T' on keyboard and display can be toggled with 'D' (to improve speed)**
 
-For example:
+### For example:
 To play yourself, without AI 
 ```
 python main.py 0 0 0
