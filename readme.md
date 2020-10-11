@@ -61,3 +61,40 @@ python main.py
 
 To terminate running, press Q on your keyboard
 
+Alternatively use the below optional inputs to change the function
+```
+python main.py gamemode train reset_weights
+```
+
+Where 
+
+gamemode:         0 = player input using arrow keys
+
+                  1 = AI input from DQN
+                  
+train:            0 = don't train (DQN weights won't be changed)
+
+                  1 = train snake
+                  
+reset_weight:     0 = Don't reset
+
+                  1 = Reset weights to retrain
+                  
+Also, training can be toggled on/off at anytime by pressing 'T' on keyboard and display can be toggled with 'D' (to improve speed)
+
+For example:
+To play yourself, without AI 
+```
+python main.py 0 0 0
+```
+To retrain a new DQN and overwrite existing weights
+```
+python main.py 1 1 1
+```
+It is also suggested to press 'D' to toggle display off when training 
+
+Periodically turn display on and train off (press 'D' and 'T') to test the current DQN
+
+Intelligent behaviour can be seen after only a few minutes of training
+
+
