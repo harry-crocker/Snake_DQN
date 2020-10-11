@@ -33,11 +33,13 @@ The results for testing the snake agent over 377 games are shown below. The aver
 
 ![Results](GIFs/Results.png)
 
-More GIFS
+### More GIFS
 ![](GIFs/Snake1.gif)
+
 ![](GIFs/Snake2.gif)
+
 ![](GIFs/Snake3.gif)
-![](GIFs/Snake5.gif)
+
 
 ## How to run
 To download the repository, open a cmd prompt and execute
