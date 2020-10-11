@@ -32,7 +32,7 @@ class DeepQNetwork:
             self.model.set_weights(weights)
             
         print(f'Push Count:{self.push_count}')
-        self.capacity = 300_000
+        self.capacity = 100_000
         # e is epsilon, the probability that an action will be random
         self.e_start = 1    
         self.e_end = 0.1

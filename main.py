@@ -159,7 +159,7 @@ def main(gamemode=1, train=False, reset_weights=False, use_pygame=True, use_conv
                     print(f'Score: {snake.score}    Average: {sum(scores)//len(scores)}')
                 snake = Snake(gamemode, win_width, win_height, use_conv)
                 action = 1
-                if DQN.push_count > DQN.capacity and train:
+                if DQN.push_count > DQN.capacity/2 and train:
                     if random.random() < 0.1:
                         exploit = True
                         explore = False
