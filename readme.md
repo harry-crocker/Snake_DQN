@@ -33,31 +33,60 @@ The results for testing the snake agent over 377 games are shown below. The aver
 
 ![Results](GIFs/Results.png)
 
+### More GIFS
+![](GIFs/Snake1.gif)
+
+![](GIFs/Snake2.gif)
+
+![](GIFs/Snake3.gif)
+
+
 ## How to run
 To download the repository, open a cmd prompt and execute
 ```
 git clone https://github.com/harry-crocker/Snake_DQN.git
 ```
-
 This will create a folder on your computer that you can access from the command prompt by executing 
-
 ```
 cd Snake_DQN
 ```
-
 Create a virtual environment and activate it. For infos, click [here](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/).
 
 Download the necessary libraries:
-
 ```
 pip install -r requirements.txt
 ```
-
 To run the snake with pre-trained DQN
-
 ```
 python main.py
 ```
+**To terminate running, press 'Q' on your keyboard**
 
-To terminate running, press Q on your keyboard
+Alternatively use the below optional inputs to change the function
+```
+python main.py gamemode train reset_weights
+```
+Where:
+
+| Input | 0 | 1 |
+| --- | --- | --- |
+| gamemode | player input using arrow keys | AI input from DQN |
+| train | Don't train (DQN weights won't be changed) | Train snake |
+| reset_weights | Don't reset | Reset weights to retrain |
+                  
+**Training can be toggled on/off at anytime by pressing 'T' on keyboard and display can be toggled with 'D' (to improve speed)**
+
+For example:
+To play yourself, without AI 
+```
+python main.py 0 0 0
+```
+To retrain a new DQN and overwrite existing weights
+```
+python main.py 1 1 1
+```
+- It is also suggested to press 'D' to toggle display off when training 
+- Periodically turn display on and train off (press 'D' and 'T') to test the current DQN
+- Intelligent behaviour can be seen after only a few minutes of training
+
 
